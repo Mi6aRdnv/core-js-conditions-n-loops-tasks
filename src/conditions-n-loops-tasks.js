@@ -61,8 +61,41 @@ function getMaxNumber(a, b, c) {
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  * {x: 1, y: 1}, {x: 2, y: 8} => false
  */
-function canQueenCaptureKing(/* queen, king */) {
-  throw new Error('Not implemented');
+function canQueenCaptureKing(queen, king) {
+  if (queen.x === king.x || queen.y === king.y) {
+    return true;
+  }
+  let currentCoordinate = { x: queen.x, y: queen.y };
+  while (currentCoordinate.x !== 1) {
+    currentCoordinate.x -= 1;
+    currentCoordinate.y -= 1;
+    if (currentCoordinate.x === king.x && currentCoordinate.y === king.y) {
+      return true;
+    }
+  }
+  while (currentCoordinate.x !== 8) {
+    currentCoordinate.x += 1;
+    currentCoordinate.y += 1;
+    if (currentCoordinate.x === king.x && currentCoordinate.y === king.y) {
+      return true;
+    }
+  }
+  currentCoordinate = { x: queen.x, y: queen.y };
+  while (currentCoordinate.x !== 1) {
+    currentCoordinate.x -= 1;
+    currentCoordinate.y += 1;
+    if (currentCoordinate.x === king.x && currentCoordinate.y === king.y) {
+      return true;
+    }
+  }
+  while (currentCoordinate.x !== 8) {
+    currentCoordinate.x += 1;
+    currentCoordinate.y -= 1;
+    if (currentCoordinate.x === king.x && currentCoordinate.y === king.y) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
